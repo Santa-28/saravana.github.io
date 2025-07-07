@@ -57,8 +57,16 @@ export const CardContactContent = styled.div`
   .contact {
     img {
       width: 100%;
+
       }
     }
+  .ellipse 
+  {
+  img {
+  opacity: 0.1;
+}
+}
+
   }
 
   

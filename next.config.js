@@ -1,6 +1,8 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 
-const { i18n } = require('./next-i18next.config');
+// const { i18n } = require('./next-i18next.config');
 
 const nextConfig = {
   reactStrictMode: true,
@@ -12,6 +14,9 @@ const nextConfig = {
   audio: {
     modules: ['mp3', 'aac', 'wav', 'ogg', 'm4a', 'flac'],
   },
+  
+  output: 'export',
+
   images: {
     remotePatterns: [
       {
@@ -30,6 +35,5 @@ const nextConfig = {
 
 
 module.exports = {
-  i18n,
-  nextConfig
+  reactStrictMode: true,
 };

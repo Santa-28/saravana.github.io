@@ -1,111 +1,105 @@
-import Image from 'next/image'
-import { useTheme } from 'styled-components'
-import education from '../../data/education'
+import Image from "next/image";
+import { useTheme } from "styled-components";
+import education from "../../data/education";
 import {
   VerticalTimeline,
-  VerticalTimelineElement
-} from 'react-vertical-timeline-component'
-import 'react-vertical-timeline-component/style.min.css'
-import { Button, Container, Title } from '../../styles/styles'
-import { EducationContainer, EducationContent } from './styles'
-import { Books, Student } from 'phosphor-react'
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+import { Button, Container, Title } from "../../styles/styles";
+import { EducationContainer, EducationContent } from "./styles";
+import { Student } from "phosphor-react";
 import Link from "next/link";
-import { useState, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useRouter } from 'next/router'
-
-export interface EducationProps {
-  target: HTMLInputElement
-}
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 export function Education() {
   const [query, setQuery] = useState("");
-  const { t, i18n } = useTranslation('common');
   const router = useRouter();
-  const [currentLang, setCurrentLang] = useState<'en' | 'ta'>('en');
+  const [currentLang, setCurrentLang] = useState<"en">("en");
 
   useEffect(() => {
     const { locale } = router;
-    setCurrentLang(locale as 'en' | 'ta');
+    setCurrentLang("en"); // Only English supported now
   }, [router.locale]);
 
-  const handleChange = (e: EducationProps) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
 
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <Container>
       <Title>
-        {currentLang === 'ta' ? 'வரலாறு' : 'History'}
+        History
         <span>
-          <Student  /> {currentLang === 'ta' ? 'கல்வி' : 'Academic'}
+          <Student /> Academic
         </span>
       </Title>
 
       <div>
-        <VerticalTimeline lineColor={theme.firstColor}>
+        <VerticalTimeline lineColor={theme.firstColor} animate={true}>
           {education &&
-            education.map(education => {
-              return (
-                <VerticalTimelineElement
-                  contentStyle={{
-                    background: theme.backgroundAlt,
-                    borderBottom: `7px solid ${theme.backgroundAlt}`,
-                    boxShadow: `0px 5px 0px 0px ${theme.firstColor}`
-                  }}
-                  contentArrowStyle={{
-                    borderRight: `10px solid ${theme.backgroundAlt}`
-                  }}
-                  date={education.date[currentLang]}
-                  icon={
-                    <Image
-                      style={{ position: 'relative', width: '100%', height: '100%', borderRadius: '60%' }}
-                      width={60}
-                      height={60}
-                      src={education.img}
-                      alt={education.title[currentLang]}
-                      loading="lazy"
-                    />
-                  }
-                  iconStyle={{
-                    boxShadow: `0px 0px 0px 3px ${theme.firstColor}`,
-                    background: theme.backgroundAlt,
-                    color: theme.firstColor
-                  }}
-                  key={education.id}
-                >
-                  <EducationContainer>
-                    <EducationContent>
-                      <h1>{education.title[currentLang]}</h1>
-                      <h2>{education.subTitle[currentLang]}</h2>
-                      <span>{education.office[currentLang]}</span>
-                      <p>{education.description[currentLang].split('\n').map((line, i) => (
-                        <a key={i}>
-                          {line}
-                          <br />
-                        </a>
-                      ))}</p>
-                      <div style={{ display: 'flex', gap:"1rem", marginTop:"1rem" }}>
-                        <Button>
-                          <Link legacyBehavior href={education.link}>
-                            <a target="_blank">{currentLang === 'ta' ? 'தளம்' : 'Website'}</a>
-                          </Link>
-                        </Button>
-                        <Button>
-                          <Link legacyBehavior href={education.link2 ?? ''}>
-                            <a target="_blank">{currentLang === 'ta' ? 'பாடம்' : 'Syllabus'}</a>
-                          </Link>
-                        </Button>
-                      </div>
-                    </EducationContent>
-                  </EducationContainer>
-                </VerticalTimelineElement>
-              )
-            })}
+            education.map((edu) => (
+              <VerticalTimelineElement
+                key={edu.id}
+                contentStyle={{
+                  background: theme.backgroundAlt,
+                  borderBottom: `7px solid ${theme.backgroundAlt}`,
+                  boxShadow: `0px 5px 0px 0px ${theme.firstColor}`,
+                }}
+                contentArrowStyle={{
+                  borderRight: `10px solid ${theme.backgroundAlt}`,
+                }}
+                date={edu.date}
+                icon={
+                  <Image
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "60%",
+                    }}
+                    width={60}
+                    height={60}
+                    src={edu.img}
+                    alt={edu.title || "Education Logo"}
+                    loading="lazy"
+                  />
+                }
+                iconStyle={{
+                  boxShadow: `0px 0px 0px 3px ${theme.firstColor}`,
+                  background: theme.backgroundAlt,
+                  color: theme.firstColor,
+                }}
+              >
+                <EducationContainer>
+                  <EducationContent>
+                    <h1>{edu.title}</h1>
+                    <h2>{edu.subTitle}</h2>
+                    <span>{edu.office}</span>
+                    <p>
+                      {(edu.description || "")
+                        .split("\n")
+                        .map((line, i) => (
+                          <a key={i}>{line}</a>
+                        ))}
+                    </p>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "1rem",
+                        marginTop: "1rem",
+                      }}
+                    >
+                    </div>
+                  </EducationContent>
+                </EducationContainer>
+              </VerticalTimelineElement>
+            ))}
         </VerticalTimeline>
       </div>
     </Container>
-  )
+  );
 }

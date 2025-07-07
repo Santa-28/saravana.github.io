@@ -7,9 +7,6 @@ import toast from 'react-hot-toast'
 import { ButtonSecondary } from '../../styles/styles'
 import { FormContent } from './styles'
 import { At, ChatText, TelegramLogo, User } from 'phosphor-react'
-import { useTranslation } from 'react-i18next'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 
 const contactFormSchema = z.object({
   name: z.string().min(3).max(100),
@@ -20,15 +17,6 @@ const contactFormSchema = z.object({
 type ContactFormData = z.infer<typeof contactFormSchema>
 
 export function Form() {
-  const { t, i18n } = useTranslation('common');
-  const router = useRouter();
-  const [currentLang, setCurrentLang] = useState<'en' | 'ta'>('en');
-
-  useEffect(() => {
-    const { locale } = router;
-    setCurrentLang(locale as 'en' | 'ta');
-  }, [router.locale]);
-
   const { register, reset } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema)
   })
@@ -39,16 +27,16 @@ export function Form() {
 
   const onSubmits = async (event: FormEvent) => {
     event.preventDefault()
-    
+
     try {
       await sendContactMail(name, email, message)
-      toast.success(currentLang === 'ta' ? 'செய்தி வெற்றிகரமாக அனுப்பப்பட்டது!' : 'Message Sent Successfully!')
+      toast.success('Message Sent Successfully!')
       setName('')
       setEmail('')
       setMessage('')
       reset()
     } catch (error) {
-      toast.error(currentLang === 'ta' ? 'செய்தி அனுப்புவதில் பிழை!' : 'Error sending message!')
+      toast.error('Error sending message!')
     }
   }
 
@@ -67,7 +55,7 @@ export function Form() {
           className="input"
         />
         <label htmlFor="name" className="user-label">
-          {currentLang === 'ta' ? 'பெயர்' : 'Name'}{' '}
+          Name{' '}
           <span>
             <User size={15} weight="bold" />
           </span>
@@ -87,7 +75,7 @@ export function Form() {
           className="input"
         />
         <label htmlFor="email" className="user-label">
-          {currentLang === 'ta' ? 'மின்னஞ்சல்' : 'Email'}{' '}
+          Email{' '}
           <span>
             <At size={15} weight="bold" />
           </span>
@@ -106,7 +94,7 @@ export function Form() {
           className="input"
         ></textarea>
         <label htmlFor="description" className="user-label">
-          {currentLang === 'ta' ? 'செய்தி' : 'Message'}{' '}
+          Message{' '}
           <span>
             <ChatText size={15} weight="bold" />
           </span>
@@ -114,7 +102,7 @@ export function Form() {
       </div>
 
       <ButtonSecondary type="submit">
-        {currentLang === 'ta' ? 'அனுப்பு' : 'Send'} <TelegramLogo size={15} weight="bold" />{' '}
+        Send <TelegramLogo size={15} weight="bold" />{' '}
       </ButtonSecondary>
     </FormContent>
   )

@@ -29,7 +29,7 @@ export const FooterContainer = styled.footer`
     cursor: pointer;
     display: flex;
     gap: 8px;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     color: ${props => props.theme.gray};
 
     a {
@@ -38,6 +38,7 @@ export const FooterContainer = styled.footer`
       }
     }
   }
+}
 `
 
 export const FooterContent = styled.div`

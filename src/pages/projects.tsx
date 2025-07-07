@@ -138,7 +138,7 @@ export default function Projects() {
         <Github />
         <p className="github">
               Hey, hey... I have more projects on{" "}
-              <a href="https://github.com/Saravanakumar2003" style={{textDecoration: 'underline',}}> my GitHub </a>
+              <a href="https://github.com/Santa-28" style={{textDecoration: 'underline',}}> my GitHub </a>
               !!
         </p>
       </T.Section>

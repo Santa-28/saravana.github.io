@@ -16,7 +16,7 @@ export const AboutContainer = styled.section`
 
   .AboutImg {
     width: 350px;
-    height: 350px;
+    height: 300px;
     object-fit: cover;
     align-self: center;
     border-radius: 10px;
@@ -28,6 +28,7 @@ export const AboutContainer = styled.section`
 
     @media(max-width: 468px) {
       width: 100%;
+      height: 100%;
     }
 
     @media(min-width: 994px) {
@@ -74,6 +75,7 @@ export const AboutContainer = styled.section`
 
     @media(max-width: 468px) {
       max-width: 100%;
+      
     }
 
     .aboutButton{
@@ -102,7 +104,8 @@ export const AboutContainer = styled.section`
     grid-template-columns: repeat(2, 1fr);
 
     .AboutImg {
-      width: 320px;
+      width: 350px;
+      
     }
 
     .aboutContent {

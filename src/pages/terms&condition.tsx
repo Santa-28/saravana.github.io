@@ -13,7 +13,7 @@ export default function TermsAndConditions() {
         <br /><br />
         <h1>Terms and Conditions</h1>
 
-        <h2>Last Updated: December 7th, 2024</h2>
+        <h2>Last Updated: December 4th, 2025</h2>
 
         <p>Welcome to Saravanakumar's Portfolio. By accessing or using this website, you agree to comply with and be bound by the following terms and conditions. If you do not agree with these terms, please do not use this site.</p>
 
@@ -82,9 +82,9 @@ export default function TermsAndConditions() {
         <h3>11. Contact Information</h3>
         <p>For questions about these Terms and Conditions or the original project attribution, contact:</p>
 
-        <p><strong>Saravanakumar R</strong><br />
-          Email: hello@Saravanakumar's Portfolio<br />
-          Website: <a href="https://saravana.vercel.app">saravana.vercel.app</a>
+        <p><strong>Saravanakumar C</strong><br />
+          Email: saravanakumarcm1212@gmail.com<br />
+          {/* Website: <a href="https://saravana.vercel.app">saravana.vercel.app</a> */}
         </p>
       </TermsAndConditionsContainer>
       <ScrollTop />

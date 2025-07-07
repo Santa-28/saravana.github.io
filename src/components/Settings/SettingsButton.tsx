@@ -150,15 +150,15 @@ const Settings: React.FC<SettingsProps> = ({ toggleTheme, currentTheme }) => {
         <IconButton onClick={toggleTheme}>
           {currentTheme === 'light' ? <FaMoon /> : <FaSun />}
         </IconButton>
-        <IconButton onClick={() => setShowLanguageOptions(!showLanguageOptions)}>
+        {/* <IconButton onClick={() => setShowLanguageOptions(!showLanguageOptions)}>
           <Translate />
-        </IconButton>
-        {showLanguageOptions && (
+        </IconButton> */}
+        {/* {showLanguageOptions && (
           <Dropdown>
             <IconButton2 onClick={() => changeLanguage('en')}>EN</IconButton2>
             <IconButton2 onClick={() => changeLanguage('ta')}>TA</IconButton2>
           </Dropdown>
-        )}
+        )} */}
         <IconButton onClick={() => setShowFontSizeOptions(!showFontSizeOptions)}>
           <MdFormatSize />
         </IconButton>

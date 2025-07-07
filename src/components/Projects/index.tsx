@@ -1,43 +1,120 @@
-import { useState } from 'react';
+// import { useState } from 'react';
+// import Image from 'next/image';
+// import Link from 'next/link';
+// import projects from '../../data/projects';
+// import { AllBlogs } from './Blogs';
+// import { ProjectsContainer, ProjectsContent, TagButton } from './styles';
+// import { Container, Title } from '../../styles/styles';
+// import { HiOutlineDesktopComputer } from 'react-icons/hi';
+// import { useTranslation } from 'react-i18next';
+// import { useRouter } from 'next/router';
+// import { useEffect } from 'react';
+
+// interface Projects {
+//   slug: string;
+//   url: string;
+//   title: string;
+//   type: string;
+//   img: string;
+// }
+
+// export function Projects() {
+//   const [selectedTags, setSelectedTags] = useState<string[]>(['All']);
+//   const tags = ['All', ...new Set(projects.flatMap(project => project.tags.map(tag => tag.name)))];
+
+//   const { t, i18n } = useTranslation('common');
+//   const router = useRouter();
+//   const [currentLang, setCurrentLang] = useState<'en' | 'ta'>('en');
+
+//   useEffect(() => {
+//     const { locale } = router;
+//     setCurrentLang(locale as 'en' | 'ta');
+//   }, [router.locale]);
+
+//   /* For Multiple Selection
+//   const toggleTag = (tag: string) => {
+//     setSelectedTags(tags =>
+//       tags.includes(tag) ? tags.filter(t => t !== tag) : [...tags, tag]
+//     );
+//   }; 
+//   */
+//   const toggleTag = (tag: string) => {
+//     setSelectedTags([tag]);
+//   };
+
+//   return (
+//     <Container id="projects">
+//       <Title>
+//         {currentLang === 'ta' ? 'வேலைகள்' : 'Works'}
+//         <span>
+//           <HiOutlineDesktopComputer />{currentLang === 'ta' ? 'திட்டம்' : 'Project'}
+//         </span>
+//         <img className="vector" width={100} height={100} src="/vectors/code.svg" alt="project" />
+//       </Title>
+
+//       <div style={{
+//         marginBottom: '2rem',
+//         display: 'flex',
+//         justifyContent: 'center',
+//         flexWrap: 'wrap',
+//         gap: '0.5rem'
+//       }}
+//       className="tag-selection">
+//       {tags.map(tag => (
+//         <TagButton
+//           key={tag}
+//           selected={selectedTags.includes(tag)}
+//           onClick={() => toggleTag(tag)}
+//         >
+//           {tag}
+//         </TagButton>
+//       ))}
+//       </div>
+
+//       <ProjectsContainer>
+//       {projects
+//         .filter(project =>
+//           selectedTags.includes('All') || project.tags.some(tag => selectedTags.includes(tag.name))
+//         )
+//         .slice(0, 9)
+//           .map(project => (
+//             <Link href={`/project/${project.url}`} key={project.id}>
+//               <ProjectsContent>
+//                 <Image width={400} height={210} src={project.img} alt={project.title} loading="lazy" />
+//                 <div className="title">
+//                   <h2>{project.title}</h2>
+//                   <span>{project.type}</span>
+//                   <div className="tags">
+//                     {project.tech.map(tag => (
+//                       <Image width={32} height={32} key={tag.name} src={tag.icon} alt={tag.name} loading="lazy" />
+//                     ))}
+//                   </div>
+//                 </div>
+//               </ProjectsContent>
+//             </Link>
+//           ))}
+//       </ProjectsContainer>
+
+//       <AllBlogs title={currentLang === 'ta' ? 'எனது அனைத்து வலைப்பதிவுகளையும் படிக்கவும்' : 'Read all of my Blogs'} />
+//     </Container>
+//   );
+// }
+
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import projects from '../../data/projects';
-import { AllBlogs } from './Blogs';
+// import { AllBlogs } from './Blogs';
 import { ProjectsContainer, ProjectsContent, TagButton } from './styles';
 import { Container, Title } from '../../styles/styles';
 import { HiOutlineDesktopComputer } from 'react-icons/hi';
-import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-
-interface Projects {
-  slug: string;
-  url: string;
-  title: string;
-  type: string;
-  img: string;
-}
+import { Cubo } from './Blogs/styles';
 
 export function Projects() {
   const [selectedTags, setSelectedTags] = useState<string[]>(['All']);
   const tags = ['All', ...new Set(projects.flatMap(project => project.tags.map(tag => tag.name)))];
 
-  const { t, i18n } = useTranslation('common');
-  const router = useRouter();
-  const [currentLang, setCurrentLang] = useState<'en' | 'ta'>('en');
-
-  useEffect(() => {
-    const { locale } = router;
-    setCurrentLang(locale as 'en' | 'ta');
-  }, [router.locale]);
-
-  /* For Multiple Selection
-  const toggleTag = (tag: string) => {
-    setSelectedTags(tags =>
-      tags.includes(tag) ? tags.filter(t => t !== tag) : [...tags, tag]
-    );
-  }; 
-  */
   const toggleTag = (tag: string) => {
     setSelectedTags([tag]);
   };
@@ -45,48 +122,63 @@ export function Projects() {
   return (
     <Container id="projects">
       <Title>
-        {currentLang === 'ta' ? 'வேலைகள்' : 'Works'}
+        Works
         <span>
-          <HiOutlineDesktopComputer />{currentLang === 'ta' ? 'திட்டம்' : 'Project'}
+          <HiOutlineDesktopComputer /> Project
         </span>
         <img className="vector" width={100} height={100} src="/vectors/code.svg" alt="project" />
       </Title>
 
-      <div style={{
-        marginBottom: '2rem',
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        gap: '0.5rem'
-      }}
-      className="tag-selection">
-      {tags.map(tag => (
-        <TagButton
-          key={tag}
-          selected={selectedTags.includes(tag)}
-          onClick={() => toggleTag(tag)}
-        >
-          {tag}
-        </TagButton>
-      ))}
+      <div
+        style={{
+          marginBottom: '2rem',
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          gap: '0.5rem'
+        }}
+        className="tag-selection"
+      >
+        {tags.map(tag => (
+          <TagButton
+            key={tag}
+            selected={selectedTags.includes(tag)}
+            onClick={() => toggleTag(tag)}
+          >
+            {tag}
+          </TagButton>
+        ))}
       </div>
 
       <ProjectsContainer>
-      {projects
-        .filter(project =>
-          selectedTags.includes('All') || project.tags.some(tag => selectedTags.includes(tag.name))
-        )
-        .slice(0, 9)
+        {projects
+          .filter(project =>
+            selectedTags.includes('All') || project.tags.some(tag => selectedTags.includes(tag.name))
+          )
+          .slice(0, 9)
           .map(project => (
-            <Link href={`/project/${project.url}`} key={project.id}>
+            <Link href={`${project.web}`} key={project.id}>
               <ProjectsContent>
-                <Image width={400} height={210} src={project.img} alt={project.title} loading="lazy" />
+                <Image
+                  width={400}
+                  height={300}
+                  src={project.img}
+                  alt={project.title}
+                  loading="lazy"
+                />
                 <div className="title">
                   <h2>{project.title}</h2>
                   <span>{project.type}</span>
                   <div className="tags">
                     {project.tech.map(tag => (
-                      <Image width={32} height={32} key={tag.name} src={tag.icon} alt={tag.name} loading="lazy" />
+                      <Image
+                        key={tag.name}
+                        width={32}
+                        height={32}
+                        src={tag.icon}
+                        alt={tag.name}
+                        loading="lazy"
+                      />
                     ))}
                   </div>
                 </div>
@@ -94,8 +186,60 @@ export function Projects() {
             </Link>
           ))}
       </ProjectsContainer>
-
-      <AllBlogs title={currentLang === 'ta' ? 'எனது அனைத்து வலைப்பதிவுகளையும் படிக்கவும்' : 'Read all of my Blogs'} />
+        <Cubo>
+                <div className="stage-cube-cont">
+                  <div className="cubespinner">
+                    <div className="face1">
+                      <Image
+                        width={72}
+                        height={72}
+                        src="/icons/HTML.png"
+                        alt="Html"
+                      />
+                    </div>
+                    <div className="face2">
+                      <Image
+                        width={72}
+                        height={72}
+                        src="/icons/CSS.png"
+                        alt="Css"
+                      />
+                    </div>
+                    <div className="face3">
+                      <Image
+                        width={72}
+                        height={72}
+                        src="/icons/JS.png"
+                        alt="JavaScript"
+                      />
+                    </div>
+                    <div className="face4">
+                      <Image
+                        width={72}
+                        height={72}
+                        src="/icons/python.png"
+                        alt="Python"
+                      />
+                    </div>
+                    <div className="face5">
+                      <Image
+                        width={72}
+                        height={72}
+                        src="/icons/TS.png"
+                        alt="TypeScript"
+                      />
+                    </div>
+                    <div className="face6">
+                      <Image
+                        width={72}
+                        height={72}
+                        src="/icons/Azure.png"
+                        alt="Azure"
+                      />
+                    </div>
+                  </div>
+                </div>
+          </Cubo>
     </Container>
   );
 }

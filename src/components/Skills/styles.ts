@@ -71,10 +71,10 @@ export const SkillsContent = styled.div`
       left: 4.5rem;
       top: -40%;
       background: ${(props) => props.color};
-      animation: barra 6s linear 0s infinite normal none running;
+      animation: bar 6s linear 0s infinite normal none running;
       border-radius: 10px;
   
-    @keyframes barra {
+    @keyframes bar {
     0% {
       transform: rotate(0deg);
     }

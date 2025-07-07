@@ -142,5 +142,6 @@ export const AboutDescription = styled.div`
     margin-bottom: 1.5rem;
     max-width: 31rem;
   }
+    
 
 `

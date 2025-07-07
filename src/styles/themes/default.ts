@@ -32,4 +32,5 @@ export const lightTheme: DefaultTheme = {
   border: '#B0B7BD', // Light border color
   borderSecond: '#A1A8AE', // Secondary border color
 
+
 };

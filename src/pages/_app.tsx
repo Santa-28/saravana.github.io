@@ -14,8 +14,10 @@ import { initGA, logPageView } from '../utils/analytics';
 import { lightTheme } from '../styles/themes/default';
 import CookiesConsent from "../components/Cookies/CookiesConsent";
 import "../styles/globals.css";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const botkey = process.env.NEXT_PUBLIC_BOTKEY_URL;
+
+const botKey = process.env.NEXT_PUBLIC_BOTKEY_URL;
 const google = process.env.NEXT_PUBLIC_GA_ID;
 
 declare global {
@@ -81,7 +83,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Analytics />
           <SpeedInsights />
           <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-          <script src={botkey} defer></script>
+          <script src={botKey} defer></script>
         </MantineProvider>
       </ThemeProvider>
     </>
