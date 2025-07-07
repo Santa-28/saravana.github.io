@@ -14,10 +14,10 @@ const experience = [
     tags: [
       { name: 'html', icon: '/experience/html.png' },
       { name: 'css', icon: '/experience/css.png' },
-      { name: 'js', icon: '/experience/js.png' },
+      { name: 'js', icon: '/experience/JS.png' },
       { name: 'react', icon: '/icons/react.png' },
       { name: 'Nextjs', icon: '/icons/nextjs.png' },
-      { name: 'Ts', icon: '/experience/Ts.png' },
+      { name: 'Ts', icon: '/experience/TS.png' },
       { name: 'vercel', icon: '/icons/vercel.png' }
     ],
     date: '03-Jun-2024 to 02-Aug-2024',
